@@ -30,6 +30,7 @@ X0 = 100
 Y0 = 100
 GRID_WIDTH = 100
 time_index = 0
+cat_images = []
 
 direction = {
     "left": [0, -1],
@@ -284,16 +285,20 @@ def proc_keyboard(press: str):
         choose_digit(press)
 
 
-def draw_cat(screen, image):
-    if success:
-        screen.blit(image, (100, 160))
+def draw_cat(screen):
+    # if success:
+    image = cat_images[time_index // 10 % 10]
+    screen.blit(image, (X0, Y0))
 
 
 def main():
     init_ans()
     pygame.init()
-    cat = pygame.image.load("./img/fm_cpmh-303151f30.jpg")
-    cat = pygame.transform.scale(cat, (420, 300))
+    global cat_images
+    for i in range(1, 11):
+        cat = pygame.image.load("./img/cat/gif_{0}.png".format(i))
+        cat = pygame.transform.scale(cat, (300, 300))
+        cat_images.append(cat)
 
     screen = pygame.display.set_mode((600, 640))
     pygame.display.set_caption("数独游戏")
@@ -332,7 +337,7 @@ def main():
         draw_select_grid(screen)
         draw_mat(screen)
         draw_text(screen)
-        draw_cat(screen, cat)
+        draw_cat(screen)
         pygame.display.update()
 
 

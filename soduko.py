@@ -5,14 +5,15 @@
 # @file     : soduko.py
 # @software : PyCharm
 
-import pygame
-from pygame.locals import *
-import sys
 import copy
-from itertools import permutations
 import random
-from loguru import logger
+import sys
+from itertools import permutations
 from typing import Tuple
+
+import pygame
+from loguru import logger
+from pygame.locals import *
 
 ans = []
 N = 4
@@ -65,7 +66,7 @@ def dfs(r):
 def gene_soduko():
     # 生成答案
     v = [i + 1 for i in range(N)]
-    random.seed(0)
+    # random.seed(0)
     ri = random.randint(0, 23)
     idx = 0
     for t in permutations(v):
@@ -80,7 +81,7 @@ def gene_soduko():
         ri = random.randint(0, N - 1)
         mat[i][ri] = -1
     # 再放四个?
-    ticket = 4
+    ticket = 5
     while ticket:
         ri = random.randint(0, 15)
         r, c = ri // N, ri % N
@@ -286,9 +287,9 @@ def proc_keyboard(press: str):
 
 
 def draw_cat(screen):
-    # if success:
-    image = cat_images[time_index // 10 % 10]
-    screen.blit(image, (X0, Y0))
+    if success:
+        image = cat_images[time_index // 10 % 10]
+        screen.blit(image, (X0, Y0))
 
 
 def main():

@@ -244,10 +244,10 @@ def choose_digit(press: str):
             row_error[r] = ip
         else:
             row_error[r] = 0
-        if not check_col(ans, r):
-            col_error[r] = ip
+        if not check_col(ans, c):
+            col_error[c] = ip
         else:
-            col_error[r] = 0
+            col_error[c] = 0
     elif ip == -1:
         ans[r][c] = ip
 
